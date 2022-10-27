@@ -24,7 +24,10 @@ export class AppService {
     async createCat(): Promise<CatEntity> {
         let cat = this.catRepo.create({
             name: faker.name.fullName(),
-            color: faker.color.human(),
+            fur: {
+                color: faker.color.human(),
+                shiny: faker.datatype.boolean(),
+            },
             age: faker.datatype.number({min: 0, max: 20}),
             toys: [],
         });
@@ -54,7 +57,7 @@ export class AppService {
             filterableColumns: {age: [FilterOperator.EQ, FilterOperator.LT, FilterOperator.GT]},
             relations: ["home", "toys"],
             searchableColumns: ['name'],
-            sortableColumns: ['name', "age", 'color'],
+            sortableColumns: ['name', "age"],
         });
     }
 }

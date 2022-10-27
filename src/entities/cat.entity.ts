@@ -11,6 +11,14 @@ import {
 import { CatToyEntity } from './cat-toy.entity'
 import { CatHomeEntity } from './cat-home.entity'
 
+export class Fur {
+    @Column()
+    color: string
+
+    @Column()
+    shiny: boolean
+}
+
 @Entity()
 export class CatEntity {
     @PrimaryGeneratedColumn()
@@ -18,9 +26,6 @@ export class CatEntity {
 
     @Column()
     name: string
-
-    @Column()
-    color: string
 
     @Column({ nullable: true })
     age: number | null
@@ -31,6 +36,9 @@ export class CatEntity {
     @OneToOne(() => CatHomeEntity, (catHome) => catHome.cat, { nullable: true })
     @JoinColumn()
     home: CatHomeEntity
+
+    @Column(() => Fur)
+    fur: Fur;
 
     @CreateDateColumn()
     createdAt: string
