@@ -53,11 +53,11 @@ export class AppService {
 
     listCats(query: PaginateQuery) {
         return paginate(query, this.catRepo, {
-            defaultSortBy: [['name', 'ASC']],
+            defaultSortBy: [['fur.color', 'ASC']],
             filterableColumns: {age: [FilterOperator.EQ, FilterOperator.LT, FilterOperator.GT]},
             relations: ["home", "toys"],
             searchableColumns: ['name'],
-            sortableColumns: ['name', "age"],
+            sortableColumns: ['name', "age", "fur.color"],
         });
     }
 }
